@@ -14,7 +14,7 @@ Training and certificates:
 - Certificate verification links and course links are available through the Education page.
 
 Skills and technologies:
-- Programming: Python, Dart, Java.
+- Programming: Python, Dart.
 - Mobile development: Flutter and Android basics.
 - Web development: HTML, CSS, JavaScript.
 - Databases: PostgreSQL, SQL, Supabase.

@@ -73,7 +73,7 @@ class SkillGroup {
 }
 
 const List<SkillGroup> kSkills = [
-  SkillGroup('Programming', Icons.terminal, ['Python', 'Dart', 'Java']),
+  SkillGroup('Programming', Icons.terminal, ['Python', 'Dart']),
   SkillGroup('Mobile Development', Icons.smartphone, [
     'Flutter',
     'Android basics',
