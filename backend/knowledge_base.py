@@ -3,6 +3,16 @@ Name: Ikram Yasin.
 Education: Computer Science student at the University of Turbat in Balochistan, Pakistan.
 Professional direction: Flutter and Dart mobile application development, Python programming, and learning Artificial Intelligence and Machine Learning.
 
+Training and certificates:
+- Ikram has completed 19 verified Coursera courses.
+- IBM courses: Introduction to Mobile App Development, Introduction to Software Engineering, Get Started with Android App Development, Designing User Interfaces and Experiences (UI/UX), Getting Started with Git and GitHub, Introduction to HTML, CSS, & JavaScript, Get Started with iOS App Development, Flutter and Dart: Developing iOS, Android, and Mobile Apps, Developing Front-End Apps with React, React Native: Developing Android and iOS Apps, Mobile App Notifications, Databases, & Publishing, Mobile App Development Capstone Project, Generative AI: Elevate your Software Development Career, and Generative AI: Turbocharge Mobile App Development.
+- EC-Council: Ethical Hacking Essentials (EHE).
+- Google: Crash Course on Python and Foundations of Cybersecurity.
+- Google Cloud: Introduction to Dart.
+- Coursera: Build a Full Website using WordPress.
+- Professional certificates include the IBM iOS and Android Mobile App Developer Professional Certificate and the listed EC-Council, Google, Google Cloud, and Coursera course certificates.
+- Certificate verification links and course links are available through the Education page.
+
 Skills and technologies:
 - Programming: Python, Dart, Java.
 - Mobile development: Flutter and Android basics.
