@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ikram_portpolio/models/portfolio_data.dart';
 
 class AboutForm extends StatelessWidget {
   final About about;
 
-  AboutForm({required this.about});
+  const AboutForm({super.key, required this.about});
 
   @override
   Widget build(BuildContext context) {

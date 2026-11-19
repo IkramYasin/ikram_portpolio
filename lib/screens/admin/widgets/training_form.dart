@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ikram_portpolio/models/portfolio_data.dart';
 
 class TrainingForm extends StatelessWidget {
   final List<Training> training;
 
-  TrainingForm({required this.training});
+  const TrainingForm({super.key, required this.training});
 
   @override
   Widget build(BuildContext context) {

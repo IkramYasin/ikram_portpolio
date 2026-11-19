@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ikram_portpolio/models/portfolio_data.dart';
 import 'package:ikram_portpolio/screens/admin/widgets/about_form.dart';
@@ -8,11 +8,13 @@ import 'package:ikram_portpolio/screens/admin/widgets/training_form.dart';
 import 'package:ikram_portpolio/screens/admin/widgets/certificates_form.dart';
 
 class AdminScreen extends StatefulWidget {
+  const AdminScreen({super.key});
+
   @override
-  _AdminScreenState createState() => _AdminScreenState();
+  AdminScreenState createState() => AdminScreenState();
 }
 
-class _AdminScreenState extends State<AdminScreen> with SingleTickerProviderStateMixin {
+class AdminScreenState extends State<AdminScreen> with SingleTickerProviderStateMixin {
   late TabController _tabController;
   late PortfolioData _portfolioData;
   bool _isLoading = true;
@@ -30,13 +32,13 @@ class _AdminScreenState extends State<AdminScreen> with SingleTickerProviderStat
           .collection('portfolio')
           .doc('data')
           .get();
+      if (!mounted) return;
       setState(() {
         _portfolioData = PortfolioData.fromJson(snapshot.data()!);
         _isLoading = false;
       });
     } catch (e) {
-      // Handle error
-      print(e);
+      // TODO: Implement proper error logging.
     }
   }
 
@@ -46,12 +48,12 @@ class _AdminScreenState extends State<AdminScreen> with SingleTickerProviderStat
           .collection('portfolio')
           .doc('data')
           .set(_portfolioData.toJson());
+      if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Portfolio data saved successfully!')),
+        const SnackBar(content: Text('Portfolio data saved successfully!')),
       );
     } catch (e) {
-      // Handle error
-      print(e);
+      // TODO: Implement proper error logging.
     }
   }
 

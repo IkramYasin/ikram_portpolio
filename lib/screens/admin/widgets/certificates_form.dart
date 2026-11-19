@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ikram_portpolio/models/portfolio_data.dart';
 
 class CertificatesForm extends StatelessWidget {
   final List<Certificate> certificates;
 
-  CertificatesForm({required this.certificates});
+  const CertificatesForm({super.key, required this.certificates});
 
   @override
   Widget build(BuildContext context) {
