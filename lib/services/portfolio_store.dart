@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:material_ui/material_ui.dart';
 
@@ -9,7 +11,9 @@ class PortfolioStore {
 
   static Future<void> load() async {
     try {
-      final snapshot = await _document.get();
+      final snapshot = await _document.get().timeout(
+        const Duration(seconds: 5),
+      );
       if (!snapshot.exists) return;
       apply(snapshot.data() ?? {});
     } catch (_) {
