@@ -1,0 +1,14 @@
+{
+  "remote.portsAttributes": {
+    "8000": {
+      "label": "Portfolio API",
+      "onAutoForward": "notify",
+      "protocol": "http"
+    },
+    "8080": {
+      "label": "Flutter Portfolio",
+      "onAutoForward": "openBrowser",
+      "protocol": "http"
+    }
+  }
+}
