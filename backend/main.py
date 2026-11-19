@@ -32,6 +32,10 @@ allowed_origins = [
     for origin in os.getenv("ALLOWED_ORIGINS", "").split(",")
     if origin.strip()
 ]
+allowed_origins.extend([
+    "https://ikram-portpolio.web.app",
+    "https://ikram-portpolio.firebaseapp.com",
+])
 
 app.add_middleware(
     CORSMiddleware,

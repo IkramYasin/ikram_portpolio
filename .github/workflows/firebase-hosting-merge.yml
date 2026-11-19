@@ -15,7 +15,6 @@ jobs:
         with:
           channel: stable
       - run: flutter build web --release --dart-define=API_BASE_URL=https://ikram-portpolio.vercel.app
-          --dart-define=API_BASE_URL=https://ikram-portpolio.vercel.app
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
