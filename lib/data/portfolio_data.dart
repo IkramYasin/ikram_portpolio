@@ -4,13 +4,13 @@ import 'package:material_ui/material_ui.dart';
 // All portfolio content lives here. Edit this file to update the website.
 // ---------------------------------------------------------------------------
 
-const String kName = 'Ikram Yasin';
+String kName = 'Ikram Yasin';
 
 // TODO: replace with the email address you want visitors to use.
-const String kEmail = 'ikramyaseenbaloch64@gmail.com';
+String kEmail = 'ikramyaseenbaloch64@gmail.com';
 
-const String kGithub = 'https://github.com/IkramYasinUot';
-const String kLinkedin = 'https://linkedin.com/in/ikram-yasin-7b5965363';
+String kGithub = 'https://github.com/IkramYasinUot';
+String kLinkedin = 'https://linkedin.com/in/ikram-yasin-7b5965363';
 
 class Project {
   const Project({
@@ -37,7 +37,7 @@ class Project {
   String get link => demo.isNotEmpty ? demo : github;
 }
 
-const List<Project> kProjects = [
+List<Project> kProjects = [
   Project(
     title: 'Makran Cars',
     category: 'WEB DEVELOPMENT',
@@ -72,7 +72,7 @@ class SkillGroup {
   final List<String> tags;
 }
 
-const List<SkillGroup> kSkills = [
+List<SkillGroup> kSkills = [
   SkillGroup('Programming', Icons.terminal, ['Python', 'Dart']),
   SkillGroup('Mobile Development', Icons.smartphone, [
     'Flutter',
@@ -99,7 +99,7 @@ class Stat {
   final String label;
 }
 
-const List<Stat> kStats = [
+List<Stat> kStats = [
   Stat('BSCS', 'Computer Science'),
   Stat('Flutter', 'Mobile development focus'),
   Stat('AI / ML', 'Future learning direction'),
@@ -142,7 +142,7 @@ class CertificateRecord {
   final String verificationUrl;
 }
 
-const List<TimelineEntry> kTimeline = [
+List<TimelineEntry> kTimeline = [
   TimelineEntry(
     'CURRENT',
     'BS Computer Science',
@@ -163,7 +163,7 @@ const List<TimelineEntry> kTimeline = [
   ),
 ];
 
-const List<TrainingRecord> kTraining = [
+List<TrainingRecord> kTraining = [
   TrainingRecord(
     provider: 'IBM',
     title: 'Introduction to Mobile App Development',
@@ -300,7 +300,7 @@ const List<TrainingRecord> kTraining = [
   ),
 ];
 
-const List<CertificateRecord> kCertificates = [
+List<CertificateRecord> kCertificates = [
   CertificateRecord(
     title: 'IBM iOS and Android Mobile App Developer Professional Certificate',
     provider: 'IBM',
