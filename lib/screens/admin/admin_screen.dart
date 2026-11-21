@@ -19,7 +19,6 @@ class AdminScreen extends StatefulWidget {
 class AdminScreenState extends State<AdminScreen> with SingleTickerProviderStateMixin {
   late TabController _tabController;
   PortfolioData? _editableData;
-  PortfolioData? _originalData;
 
   @override
   void initState() {
@@ -31,14 +30,8 @@ class AdminScreenState extends State<AdminScreen> with SingleTickerProviderState
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // Only initialize the editable copy once, the first time dependencies
-    // are resolved. Subsequent store notifications (e.g. after load/save)
-    // must not overwrite the user's unsaved edits.
-    if (_editableData == null) {
-      final store = context.read<PortfolioStore>();
-      _originalData = store.portfolioData;
-      _editableData = _originalData?.copyWith();
-    }
+    // Editable data is initialized in the Consumer builder below, once the
+    // PortfolioStore finishes loading from Firestore.
   }
 
   Future<void> _savePortfolioData() async {
@@ -64,12 +57,22 @@ class AdminScreenState extends State<AdminScreen> with SingleTickerProviderState
   Widget build(BuildContext context) {
     return Consumer<PortfolioStore>(
       builder: (context, store, child) {
+        // Initialize editable data from Firestore once loading completes.
+        // This runs after load() fetches the document, so existing data
+        // is available for editing. The null check prevents overwriting
+        // the user's unsaved changes on subsequent rebuilds (e.g. after save).
+        if (_editableData == null &&
+            store.portfolioData.about.name.isNotEmpty) {
+          _editableData = store.portfolioData.copyWith();
+        }
+
+        // Show a loading indicator while the data is being fetched.
         if (store.isLoading && _editableData == null) {
           return const Scaffold(
             body: Center(child: CircularProgressIndicator()),
           );
         }
-
+        // If no data is available at all, show a message.
         if (_editableData == null) {
           return const Scaffold(
             body: Center(child: Text('No data available')),
