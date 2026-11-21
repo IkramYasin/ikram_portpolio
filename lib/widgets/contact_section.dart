@@ -1,6 +1,5 @@
-import 'package:material_ui/material_ui.dart';
+import 'package:flutter/material.dart';
 
-import '../data/portfolio_data.dart';
 import '../theme/app_theme.dart';
 import 'common.dart';
 
@@ -22,13 +21,13 @@ class ContactSection extends StatelessWidget {
     Widget email({bool full = false}) => AppButton(
       label: 'Send an email',
       fullWidth: full,
-      onTap: () => openUrl('mailto:$kEmail'),
+      onTap: () => openUrl('mailto:ikram.hassib@gmail.com'),
     );
     Widget linkedin({bool full = false}) => AppButton(
       label: 'Connect on LinkedIn',
       primary: false,
       fullWidth: full,
-      onTap: () => openUrl(kLinkedin),
+      onTap: () => openUrl('https://www.linkedin.com/in/ikram-hassib/'),
     );
 
     final Widget panelChild;

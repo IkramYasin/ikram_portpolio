@@ -1,8 +1,7 @@
 import 'dart:math' as math;
 
-import 'package:material_ui/material_ui.dart';
+import 'package:flutter/material.dart';
 
-import '../data/portfolio_data.dart';
 import '../theme/app_theme.dart';
 import 'common.dart';
 
@@ -176,11 +175,11 @@ class _HeroCopy extends StatelessWidget {
           spacing: 15,
           runSpacing: 8,
           children: [
-            HoverLink(label: 'GitHub', onTap: () => openUrl(kGithub)),
+            HoverLink(label: 'GitHub', onTap: () => openUrl('https://github.com/ikram-hassib')),
             const _Dot(),
-            HoverLink(label: 'LinkedIn', onTap: () => openUrl(kLinkedin)),
+            HoverLink(label: 'LinkedIn', onTap: () => openUrl('https://www.linkedin.com/in/ikram-hassib/')),
             const _Dot(),
-            HoverLink(label: 'Email', onTap: () => openUrl('mailto:$kEmail')),
+            HoverLink(label: 'Email', onTap: () => openUrl('mailto:ikram.hassib@gmail.com')),
           ],
         ),
       ],

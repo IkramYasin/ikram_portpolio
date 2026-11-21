@@ -1,5 +1,7 @@
-import 'package:material_ui/material_ui.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../services/portfolio_store.dart';
 import '../widgets/about_section.dart';
 import '../widgets/chat_widget.dart';
 import '../widgets/common.dart';
@@ -24,6 +26,13 @@ class PortfolioPage extends StatefulWidget {
 class _PortfolioPageState extends State<PortfolioPage> {
   final ValueNotifier<int> _active = ValueNotifier<int>(0);
   bool _menuOpen = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // Load the portfolio data when the page is first initialized.
+    context.read<PortfolioStore>().load();
+  }
 
   @override
   void dispose() {
@@ -54,54 +63,67 @@ class _PortfolioPageState extends State<PortfolioPage> {
     final mobile = R.isMobile(context);
     final headerHeight = R.headerHeight(context);
 
-    return Scaffold(
-      body: Stack(
-        children: [
-          Positioned.fill(
-            top: headerHeight,
-            child: ValueListenableBuilder<int>(
-              valueListenable: _active,
-              builder: (context, activeIndex, _) {
-                return IndexedStack(
-                  index: activeIndex,
-                  children: [
-                    for (var i = 0; i < kNavLabels.length; i++)
-                      SingleChildScrollView(
-                        key: PageStorageKey<String>('portfolio-$i'),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            _buildPage(i),
-                            SiteFooter(onHome: () => _goTo(0)),
-                          ],
-                        ),
-                      ),
-                  ],
-                );
-              },
+    return Consumer<PortfolioStore>(
+      builder: (context, store, child) {
+        // Show a loading indicator while the data is being fetched.
+        if (store.isLoading) {
+          return const Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
             ),
+          );
+        }
+        // Once loaded, display the portfolio content.
+        return Scaffold(
+          body: Stack(
+            children: [
+              Positioned.fill(
+                top: headerHeight,
+                child: ValueListenableBuilder<int>(
+                  valueListenable: _active,
+                  builder: (context, activeIndex, _) {
+                    return IndexedStack(
+                      index: activeIndex,
+                      children: [
+                        for (var i = 0; i < kNavLabels.length; i++)
+                          SingleChildScrollView(
+                            key: PageStorageKey<String>('portfolio-$i'),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                _buildPage(i),
+                                SiteFooter(onHome: () => _goTo(0)),
+                              ],
+                            ),
+                          ),
+                      ],
+                    );
+                  },
+                ),
+              ),
+              Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
+                child: SiteHeader(
+                  active: _active,
+                  onNav: _goTo,
+                  menuOpen: _menuOpen,
+                  onToggleMenu: () => setState(() => _menuOpen = !_menuOpen),
+                ),
+              ),
+              if (mobile && _menuOpen)
+                Positioned(
+                  top: headerHeight,
+                  left: 0,
+                  right: 0,
+                  child: MobileMenu(active: _active, onNav: _goTo),
+                ),
+              const Positioned.fill(child: ChatOverlay()),
+            ],
           ),
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: SiteHeader(
-              active: _active,
-              onNav: _goTo,
-              menuOpen: _menuOpen,
-              onToggleMenu: () => setState(() => _menuOpen = !_menuOpen),
-            ),
-          ),
-          if (mobile && _menuOpen)
-            Positioned(
-              top: headerHeight,
-              left: 0,
-              right: 0,
-              child: MobileMenu(active: _active, onNav: _goTo),
-            ),
-          const Positioned.fill(child: ChatOverlay()),
-        ],
-      ),
+        );
+      },
     );
   }
 }

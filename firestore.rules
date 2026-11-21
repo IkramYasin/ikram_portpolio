@@ -2,7 +2,7 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /portfolio/content {
+    match /portfolio/data {
       allow read: if true;
       allow create, update, delete: if request.auth != null
         && request.auth.token.email == 'ikramyaseenbaloch64@gmail.com';

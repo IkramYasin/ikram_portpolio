@@ -161,47 +161,50 @@ class _ChatOverlayState extends State<ChatOverlay> {
   Widget _buildWindow() {
     final itemCount = _messages.length + (_showSuggestions ? 1 : 0);
 
-    return Material(
-      type: MaterialType.transparency,
-      child: Container(
-        clipBehavior: Clip.antiAlias,
-        decoration: BoxDecoration(
-          color: const Color(0xFF0B1B2C),
-          borderRadius: BorderRadius.circular(15),
-          border: Border.all(color: AppColors.cyan.o(.22)),
-          boxShadow: const [
-            BoxShadow(
-              color: Color(0x99000000),
-              blurRadius: 60,
-              offset: Offset(0, 25),
-            ),
-          ],
-        ),
-        child: Column(
-          children: [
-            _header(),
-            Expanded(
-              child: ListView.separated(
-                controller: _scroll,
-                padding: const EdgeInsets.all(15),
-                itemCount: itemCount,
-                separatorBuilder: (_, _) => const SizedBox(height: 11),
-                itemBuilder: (context, i) {
-                  if (i < _messages.length) return _Bubble(_messages[i]);
-                  return _suggestionList();
-                },
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Material(
+        type: MaterialType.transparency,
+        child: Container(
+          clipBehavior: Clip.antiAlias,
+          decoration: BoxDecoration(
+            color: const Color(0xFF0B1B2C),
+            borderRadius: BorderRadius.circular(15),
+            border: Border.all(color: AppColors.cyan.o(.22)),
+            boxShadow: const [
+              BoxShadow(
+                color: Color(0x99000000),
+                blurRadius: 60,
+                offset: Offset(0, 25),
               ),
-            ),
-            _form(),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(8, 0, 8, 9),
-              child: Text(
-                'AI-generated answers based on the portfolio information.',
-                textAlign: TextAlign.center,
-                style: AppText.body(size: 9, color: const Color(0xFF72899D)),
+            ],
+          ),
+          child: Column(
+            children: [
+              _header(),
+              Expanded(
+                child: ListView.separated(
+                  controller: _scroll,
+                  padding: const EdgeInsets.all(15),
+                  itemCount: itemCount,
+                  separatorBuilder: (_, _) => const SizedBox(height: 11),
+                  itemBuilder: (context, i) {
+                    if (i < _messages.length) return _Bubble(_messages[i]);
+                    return _suggestionList();
+                  },
+                ),
               ),
-            ),
-          ],
+              _form(),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(8, 0, 8, 9),
+                child: Text(
+                  'AI-generated answers based on the portfolio information.',
+                  textAlign: TextAlign.center,
+                  style: AppText.body(size: 9, color: const Color(0xFF72899D)),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
