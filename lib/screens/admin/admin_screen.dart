@@ -61,8 +61,7 @@ class AdminScreenState extends State<AdminScreen> with SingleTickerProviderState
         // This runs after load() fetches the document, so existing data
         // is available for editing. The null check prevents overwriting
         // the user's unsaved changes on subsequent rebuilds (e.g. after save).
-        if (_editableData == null &&
-            store.portfolioData.about.name.isNotEmpty) {
+        if (_editableData == null && !store.isLoading) {
           _editableData = store.portfolioData.copyWith();
         }
 
